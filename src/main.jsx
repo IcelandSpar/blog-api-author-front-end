@@ -5,6 +5,7 @@ import App from './App.jsx';
 import Home from './views/Home.jsx';
 import PostBlog from './views/PostBlog.jsx';
 import Login from './views/Login.jsx';
+import Logout from './views/Logout.jsx';
 import Register from './views/Register.jsx';
 
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
   {
     path: '/login',
     element: <Login/>
+  },
+  {
+    path: '/logout',
+    element: <Logout/>
   },
   {
     path: '/register',

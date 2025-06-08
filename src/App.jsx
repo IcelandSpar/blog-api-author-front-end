@@ -23,7 +23,7 @@ function App() {
 
   return (
     <>
-      <UserContext.Provider value={{isLoggedIn}}>
+      <UserContext.Provider value={{isLoggedIn, setIsLoggedIn}}>
         <RouterProvider router={router}/>
       </UserContext.Provider>
     </>

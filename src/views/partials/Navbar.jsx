@@ -14,6 +14,7 @@ const Navbar = () => {
         {isLoggedIn ? (
           <>
             <Link to={"/post-blog"}>Post Blog</Link>
+            <Link to={'/logout'}>Logout</Link>
           </>
         ) : (
           <>
