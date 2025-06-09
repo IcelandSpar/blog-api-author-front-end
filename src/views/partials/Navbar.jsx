@@ -4,17 +4,21 @@ import UserContext from "../../UserContext";
 import styles from "../../styles/Navbar.module.css";
 
 const Navbar = () => {
-  const { isLoggedIn } = useContext(UserContext);
-  console.log(isLoggedIn);
+  const { isLoggedIn, isAuthor } = useContext(UserContext);
 
   return (
     <>
       <nav className={styles.navBarCont}>
         <Link to={"/"}>Home</Link>
+        {isAuthor == null && isLoggedIn ? (
+          <Link to={'/become-an-author'}>Become an Author</Link>
+        ) : (
+          null
+        )}
+        {isLoggedIn && isAuthor ? (<Link to={"/post-blog"}>Post Blog</Link>) : null}
         {isLoggedIn ? (
           <>
-            <Link to={"/post-blog"}>Post Blog</Link>
-            <Link to={'/logout'}>Logout</Link>
+            <Link to={"/logout"}>Logout</Link>
           </>
         ) : (
           <>

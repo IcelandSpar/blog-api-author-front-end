@@ -9,21 +9,37 @@ import router from './main.jsx';
 function App() {
 
   const [ isLoggedIn, setIsLoggedIn ] = useState(null);
+  const [ isAuthor, setIsAuthor ] = useState(null);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
     fetch(`http://localhost:3000/login/check-if-auth`, {
       headers: {
-        Authorization: `Bearer ${token}`
+        Authorization: `Bearer ${token}`,
       }
     })
     .then((res) => res.json())
     .then((res) => res.isAuth ? setIsLoggedIn(true) : setIsLoggedIn(false))
+
+    if(isLoggedIn) {
+      fetch(`http://localhost:3000/author/check-if-author`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        }
+      })
+      .then((res) => res.json())
+      .then((res) => {
+        setIsAuthor(res.author)
+      })
+    }
+
+
+
   }, [isLoggedIn])
 
   return (
     <>
-      <UserContext.Provider value={{isLoggedIn, setIsLoggedIn}}>
+      <UserContext.Provider value={{isLoggedIn, setIsLoggedIn, isAuthor}}>
         <RouterProvider router={router}/>
       </UserContext.Provider>
     </>
