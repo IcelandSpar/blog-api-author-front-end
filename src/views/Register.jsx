@@ -7,17 +7,17 @@ const Register = () => {
       <Navbar />
       <main className={styles.registerMainCont}>
         <form>
-          <fieldset>
-            <legend>Register</legend>
-            <div>
-              <label htmlFor="">Username: </label>
-              <input type="text" />
+          <fieldset className={styles.fieldsetCont}>
+            <legend className={styles.registerLegend}>Register</legend>
+            <div className={styles.labelAndInputCont}>
+              <label className={styles.inputLabels} htmlFor="username">Username: </label>
+              <input className={styles.registerInputs} type="text" id="username" name="username"/>
             </div>
-            <div>
-              <label htmlFor="">Password: </label>
-              <input type="text" />
+            <div className={styles.labelAndInputCont}>
+              <label className={styles.inputLabels} htmlFor="password">Password: </label>
+              <input className={styles.registerInputs} type="text" id="password" name="password"/>
             </div>
-            <button>Register</button>
+            <button className={styles.registerBtn}>Register</button>
           </fieldset>
         </form>
       </main>

@@ -53,14 +53,14 @@ const Login = () => {
       <main className={styles.loginMainCont}>
         <form className={styles.loginForm}>
           <fieldset className={styles.fieldsetCont}>
-            <legend>Login</legend>
+            <legend className={styles.loginLegend}>Login</legend>
             {!loginErr ? null : <p>Username or password is incorrect, please try again.</p>}
             <div className={styles.labelAndInputCont}>
-              <label htmlFor="username">Username: </label>
+              <label className={styles.inputLabels} htmlFor="username">Username: </label>
               <input className={styles.loginInputs} ref={usernameRef} type="text" id="username" name="username" autoComplete="true"/>
             </div>
             <div className={styles.labelAndInputCont}>
-              <label htmlFor="password">Password: </label>
+              <label className={styles.inputLabels} htmlFor="password">Password: </label>
               <input className={styles.loginInputs} ref={passwordRef} type="password" id="password" name="password"/>
             </div>
             <button type="button" onClick={handleSubmit} className={styles.loginBtn}>Login</button>

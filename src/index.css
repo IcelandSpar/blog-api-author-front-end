@@ -73,4 +73,18 @@ button:focus-visible {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  font-family: 'Nunito';
+}
+
+:root, * {
+  font-family: 'nunito';
+
+}
+body {
+  background-color: #432E54;
+  color: white;
+}
+
+a {
+  color: white;
 }
