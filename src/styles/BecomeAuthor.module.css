@@ -11,6 +11,10 @@
   gap: 1rem;
 }
 
+.formLegend {
+  padding: 0 1rem;
+}
+
 .labelAndTextAreaCont {
   display: flex;
   flex-direction: column;

@@ -10,7 +10,7 @@ const Navbar = () => {
     <>
       <nav className={styles.navBarCont}>
         <Link to={"/"}>Home</Link>
-        {isAuthor == null && isLoggedIn ? (
+        {(isAuthor == null || isAuthor == false) && isLoggedIn ? (
           <Link to={'/become-an-author'}>Become an Author</Link>
         ) : (
           null
