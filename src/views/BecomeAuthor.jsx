@@ -4,13 +4,15 @@ import { useNavigate } from 'react-router-dom';
 import UserContext from '../UserContext.jsx';
 
 import Navbar from "./partials/Navbar.jsx";
+import Sidebar from './partials/Sidebar.jsx';
 import styles from '../styles/BecomeAuthor.module.css';
 
 const BecomeAuthor = () => {
   const bioInputRef = useRef();
-  const { isAuthor, setIsAuthor } = useContext(UserContext)
+  // const { isAuthor, setIsAuthor } = useContext(UserContext)
+  const { setIsAuthor } = useContext(UserContext)
 
-  const [ bioInputCharacterCount, setBioInputCharacterCount ] = useState(null);
+  // const [ bioInputCharacterCount, setBioInputCharacterCount ] = useState(null);
   const [ submitErr, setSubmitErr ] = useState(false);
   const [ inputEmptyErr, setInputEmptyErr ] = useState(false);
 
@@ -62,6 +64,7 @@ const BecomeAuthor = () => {
 
   return (
     <>
+      <Sidebar/>
       <Navbar />
       <main>
         <form className={styles.becomeAuthorForm}>

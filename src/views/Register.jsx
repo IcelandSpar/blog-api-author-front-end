@@ -1,9 +1,11 @@
 import Navbar from "./partials/Navbar.jsx";
+import Sidebar from "./partials/Sidebar.jsx";
 import styles from '../styles/Register.module.css';
 
 const Register = () => {
   return (
     <>
+      <Sidebar/>
       <Navbar />
       <main className={styles.registerMainCont}>
         <form>

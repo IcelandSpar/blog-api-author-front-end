@@ -1,0 +1,13 @@
+.sideBarBtn {
+  background-color: transparent;
+  border: 1px solid gray;
+  display: flex;
+  justify-content: center;
+  border-radius: 7px;
+  padding: .3rem;
+  cursor: pointer;
+}
+
+.sideBarIcon {
+  margin: auto;
+}

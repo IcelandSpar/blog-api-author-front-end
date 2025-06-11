@@ -1,9 +1,18 @@
 .navBarCont {
+  display: grid;
+  grid-template-columns: 1fr 5fr 1fr;
+  align-items: center;
+  padding: 1rem;
+}
+
+.sideBarBtnStyle {
+  justify-self: start;
+}
+
+.linksCont {
   display: flex;
-  gap: 1rem;
   justify-content: center;
-  padding: 1rem 0;
-  position: relative;
+  gap: 1rem;
 }
 
 .sideBarBtn {

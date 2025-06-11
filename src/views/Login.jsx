@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react';
 import Navbar from "./partials/Navbar.jsx";
+import Sidebar from './partials/Sidebar.jsx';
 import styles from '../styles/Login.module.css';
 
 const Login = () => {
@@ -49,6 +50,7 @@ const Login = () => {
 
   return (
     <>
+      <Sidebar/>
       <Navbar />
       <main className={styles.loginMainCont}>
         <form onSubmit={handleSubmit} className={styles.loginForm}>
