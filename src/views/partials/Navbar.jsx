@@ -4,11 +4,18 @@ import UserContext from "../../UserContext";
 import styles from "../../styles/Navbar.module.css";
 
 const Navbar = () => {
-  const { isLoggedIn, isAuthor } = useContext(UserContext);
+  const { isLoggedIn, isAuthor, isSideBarOpen, setIsSideBarOpen } = useContext(UserContext);
+  
+  const handleSideBarBtn = (e) => {
+    e.preventDefault();
+    setIsSideBarOpen((prev) => !prev)
+    console.log(isSideBarOpen);
+  }
 
   return (
     <>
       <nav className={styles.navBarCont}>
+      <button onClick={(e) => handleSideBarBtn(e)} className={styles.sideBarBtn}>Side</button>
         <Link to={"/"}>Home</Link>
         {(isAuthor == null || isAuthor == false) && isLoggedIn ? (
           <Link to={'/become-an-author'}>Become an Author</Link>

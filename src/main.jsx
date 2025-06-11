@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx';
 import Home from './views/Home.jsx';
+import Blogs from './views/Blogs.jsx';
 import Login from './views/Login.jsx';
 import Logout from './views/Logout.jsx';
 import Register from './views/Register.jsx';
@@ -35,7 +36,11 @@ const router = createBrowserRouter([
     element: <BecomeAuthor/>,
   },
   {
-    path: '/blog/:blogId'
+    path: '/blogs',
+    element: <Blogs/>,
+  },
+  {
+    path: '/blogs/:blogId'
   },
   {
     path: '/post-blog',

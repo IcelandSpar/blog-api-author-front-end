@@ -10,6 +10,7 @@ function App() {
 
   const [ isLoggedIn, setIsLoggedIn ] = useState(null);
   const [ isAuthor, setIsAuthor ] = useState(null);
+  const [ isSideBarOpen, setIsSideBarOpen ] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -39,7 +40,7 @@ function App() {
 
   return (
     <>
-      <UserContext.Provider value={{isLoggedIn, setIsLoggedIn, isAuthor, setIsAuthor}}>
+      <UserContext.Provider value={{isLoggedIn, setIsLoggedIn, isAuthor, setIsAuthor, isSideBarOpen, setIsSideBarOpen}}>
         <RouterProvider router={router}/>
       </UserContext.Provider>
     </>

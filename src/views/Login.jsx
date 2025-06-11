@@ -51,7 +51,7 @@ const Login = () => {
     <>
       <Navbar />
       <main className={styles.loginMainCont}>
-        <form className={styles.loginForm}>
+        <form onSubmit={handleSubmit} className={styles.loginForm}>
           <fieldset className={styles.fieldsetCont}>
             <legend className={styles.loginLegend}>Login</legend>
             {!loginErr ? null : <p>Username or password is incorrect, please try again.</p>}
