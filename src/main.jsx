@@ -6,6 +6,7 @@ import Home from './views/Home.jsx';
 import Blogs from './views/Blogs.jsx';
 import Login from './views/Login.jsx';
 import Logout from './views/Logout.jsx';
+import Profile from './views/Profile.jsx';
 import Register from './views/Register.jsx';
 import PostBlog from './views/PostBlog.jsx';
 import BecomeAuthor from './views/BecomeAuthor.jsx';
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
   {
     path: '/become-an-author',
     element: <BecomeAuthor/>,
+  },
+  {
+    path: '/profile',
+    element: <Profile/> 
   },
   {
     path: '/blogs',

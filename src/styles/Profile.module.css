@@ -1,0 +1,42 @@
+
+
+
+.authorMainCont {
+  display: flex;
+  gap: 1.5rem;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.authorInfoCont {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.authorUserHeading {
+  font-size: 3rem;
+
+}
+
+.authorBio {
+  font-size: 1.2rem;
+}
+
+@media (max-width: 1200px) {
+
+
+
+  .authorPage {
+
+  }
+
+  .navStyle {
+
+  }
+
+  .authorMainCont {
+
+  }
+}

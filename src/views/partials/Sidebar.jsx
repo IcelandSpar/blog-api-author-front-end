@@ -7,6 +7,7 @@ import SidebarBtn from './SidebarBtn';
 import styles from '../../styles/Sidebar.module.css';
 import homeIcon from '../../assets/home-icon.svg';
 import blogsIcon from '../../assets/view-list.svg';
+import profileIcon from '../../assets/profile-circle.svg';
 
 
 
@@ -30,8 +31,12 @@ const Sidebar = () => {
             <Link to={'/'}>Home</Link>
           </div>
           <div className={styles.iconAndLinkContainers}>
+            <img src={profileIcon} alt="profile" />
+            <Link to={'/profile'}>Profile</Link>
+          </div>
+          <div className={styles.iconAndLinkContainers}>
             <img src={blogsIcon} alt="blogs" />
-            <Link to={'/blogs'}>Blogs</Link>
+            <Link to={'/blogs'}>My Blogs</Link>
           </div>
         </aside>
         </>
