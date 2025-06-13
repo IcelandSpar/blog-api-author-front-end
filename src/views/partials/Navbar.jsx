@@ -7,7 +7,7 @@ import SidebarBtn from './SidebarBtn.jsx';
 import styles from "../../styles/Navbar.module.css";
 
 const Navbar = () => {
-  const { isLoggedIn, isAuthor} = useContext(UserContext);
+  const { isLoggedIn, isAuthor, isSideBarOpen} = useContext(UserContext);
   
 
 
@@ -16,21 +16,21 @@ const Navbar = () => {
       <nav className={styles.navBarCont}>
       <SidebarBtn sidebarStyles={styles.sideBarBtnStyle}/>
         <div className={styles.linksCont}>
-          <Link to={"/"}>Home</Link>
+          <Link tabIndex={!isSideBarOpen ? null : '-1'} to={"/"}>Home</Link>
           {(isAuthor == null || isAuthor == false) && isLoggedIn ? (
-            <Link to={'/become-an-author'}>Become an Author</Link>
+            <Link tabIndex={!isSideBarOpen ? null : '-1'} to={'/become-an-author'}>Become an Author</Link>
           ) : (
             null
           )}
-          {isLoggedIn && isAuthor ? (<Link to={"/post-blog"}>Post Blog</Link>) : null}
+          {isLoggedIn && isAuthor ? (<Link tabIndex={!isSideBarOpen ? null : '-1'} to={"/post-blog"}>Post Blog</Link>) : null}
           {isLoggedIn ? (
             <>
-              <Link to={"/logout"}>Logout</Link>
+              <Link tabIndex={!isSideBarOpen ? null : '-1'} to={"/logout"}>Logout</Link>
             </>
           ) : (
             <>
-              <Link to={"/login"}>Login</Link>
-              <Link to={"/register"}>Register</Link>
+              <Link tabIndex={!isSideBarOpen ? null : '-1'} to={"/login"}>Login</Link>
+              <Link tabIndex={!isSideBarOpen ? null : '-1'} to={"/register"}>Register</Link>
             </>
           )}
         </div>

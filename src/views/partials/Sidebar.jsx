@@ -32,17 +32,17 @@ const Sidebar = () => {
           </div>
           <div className={styles.iconAndLinkContainers}>
             <img src={homeIcon} alt="home" />
-            <Link to={'/'}>Home</Link>
+            <Link tabIndex={isSideBarOpen ? null : '-1'} to={'/'}>Home</Link>
           </div>
           {!isLoggedIn ? (
             <>
           <div className={styles.iconAndLinkContainers}>
             <img src={loginIcon} alt="login" />
-            <Link to={'/login'}>Login</Link>
+            <Link  tabIndex={isSideBarOpen ? null : '-1'} to={'/login'}>Login</Link>
           </div>
           <div className={styles.iconAndLinkContainers}>
             <img src={registerIcon} alt="register" />
-            <Link to={'/register'}>Register</Link>
+            <Link tabIndex={isSideBarOpen ? null : '-1'} to={'/register'}>Register</Link>
           </div>
             </>
           ) : (
@@ -52,27 +52,27 @@ const Sidebar = () => {
             <>
                       <div className={styles.iconAndLinkContainers}>
             <img src={profileIcon} alt="profile" />
-            <Link to={'/profile'}>Profile</Link>
+            <Link tabIndex={isSideBarOpen ? null : '-1'} to={'/profile'}>Profile</Link>
           </div>
           <div className={styles.iconAndLinkContainers}>
             <img src={blogsIcon} alt="blogs" />
-            <Link to={'/blogs'}>My Blogs</Link>
+            <Link tabIndex={isSideBarOpen ? null : '-1'} to={'/blogs'}>My Blogs</Link>
           </div>
           <div className={styles.iconAndLinkContainers}>
           <img src={postBlogIcon} alt="post blog" />
-          <Link to={'/post-blog'}>Post Blog</Link>
+          <Link tabIndex={isSideBarOpen ? null : '-1'} to={'/post-blog'}>Post Blog</Link>
         </div>
             </>
 
           ) : (
             <div className={styles.iconAndLinkContainers}>
           <img src={authorBadgeIcon} alt="become an author" />
-          <Link to={'/become-an-author'}>Become an Author</Link>
+          <Link tabIndex={isSideBarOpen ? null : '-1'} to={'/become-an-author'}>Become an Author</Link>
             </div>
           )}
                       <div className={styles.iconAndLinkContainers}>
             <img src={logoutIcon} alt="logout" />
-            <Link to={'/logout'}>Logout</Link>
+            <Link tabIndex={isSideBarOpen ? null : '-1'} to={'/logout'}>Logout</Link>
             </div>
 
         </>

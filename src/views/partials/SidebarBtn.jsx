@@ -14,7 +14,7 @@ const SidebarBtn = ({sidebarStyles}) => {
   };
   return (
     <button onClick={(e) => handleSideBarBtn(e)} className={`${styles.sideBarBtn}  ${sidebarStyles}`}>
-      <img className={styles.sideBarIcon} src={isSideBarOpen ? sideBarClose : sidebarBurger} alt="sidebar button" />
+      <img className={styles.sideBarIcon} src={isSideBarOpen ? sideBarClose : sidebarBurger} alt={isSideBarOpen ? 'exit sidebar' : 'open sidebar'} />
     </button>
   );
 };
