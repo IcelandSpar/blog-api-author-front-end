@@ -44,7 +44,26 @@
 }
 
 .iconAndLinkContainers {
-  display: flex;
-  gap: 1rem;
+  display: grid;
+  grid-template-columns: .5fr 5fr;
   align-items: center;
+  gap: 1rem;
+}
+
+.iconAndLinkContainers img {
+  width: 25px;
+  height: 25px;
+}
+
+@media (max-width: 500px) {
+  .sidebarCont {
+    width: 100%;
+    left: -100%;
+    max-width: 100%;
+
+  }
+
+  .activeSidebar {
+    left: 0;
+  }
 }

@@ -48,14 +48,15 @@ const BecomeAuthor = () => {
           setSubmitErr(true);
           isThereErr = true
         } 
+        return res.json()
       })
+      .then((res) => setIsAuthor(res.author))
       .catch((err) => {
         console.error(err)
         setSubmitErr(true)
       })
       .finally(() => {
       });
-      setIsAuthor(true);
       if(!isThereErr) {
         navigate('/')
       }
