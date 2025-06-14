@@ -32,17 +32,23 @@ const Sidebar = () => {
           </div>
           <div className={styles.iconAndLinkContainers}>
             <img src={homeIcon} alt="home" />
-            <Link tabIndex={isSideBarOpen ? null : '-1'} to={'/'}>Home</Link>
+            <p onClick={handleSideBarBtn}>
+              <Link tabIndex={isSideBarOpen ? null : '-1'} to={'/'}>Home</Link>
+            </p>
           </div>
           {!isLoggedIn ? (
             <>
           <div className={styles.iconAndLinkContainers}>
             <img src={loginIcon} alt="login" />
-            <Link  tabIndex={isSideBarOpen ? null : '-1'} to={'/login'}>Login</Link>
+            <p onClick={handleSideBarBtn}>
+              <Link  tabIndex={isSideBarOpen ? null : '-1'} to={'/login'}>Login</Link>
+            </p>
           </div>
           <div className={styles.iconAndLinkContainers}>
             <img src={registerIcon} alt="register" />
-            <Link tabIndex={isSideBarOpen ? null : '-1'} to={'/register'}>Register</Link>
+            <p onClick={handleSideBarBtn}>
+              <Link tabIndex={isSideBarOpen ? null : '-1'} to={'/register'}>Register</Link>
+            </p>
           </div>
             </>
           ) : (
@@ -52,27 +58,37 @@ const Sidebar = () => {
             <>
                       <div className={styles.iconAndLinkContainers}>
             <img src={profileIcon} alt="profile" />
-            <Link tabIndex={isSideBarOpen ? null : '-1'} to={'/profile'}>Profile</Link>
+            <p onClick={handleSideBarBtn}>
+              <Link tabIndex={isSideBarOpen ? null : '-1'} to={'/profile'}>Profile</Link>
+            </p>
           </div>
           <div className={styles.iconAndLinkContainers}>
             <img src={blogsIcon} alt="blogs" />
-            <Link tabIndex={isSideBarOpen ? null : '-1'} to={'/blogs'}>My Blogs</Link>
+            <p onClick={handleSideBarBtn}>
+              <Link tabIndex={isSideBarOpen ? null : '-1'} to={'/blogs'}>My Blogs</Link>
+            </p>
           </div>
           <div className={styles.iconAndLinkContainers}>
           <img src={postBlogIcon} alt="post blog" />
-          <Link tabIndex={isSideBarOpen ? null : '-1'} to={'/post-blog'}>Post Blog</Link>
+          <p onClick={handleSideBarBtn}>
+            <Link tabIndex={isSideBarOpen ? null : '-1'} to={'/post-blog'}>Post Blog</Link>
+          </p>
         </div>
             </>
 
           ) : (
             <div className={styles.iconAndLinkContainers}>
           <img src={authorBadgeIcon} alt="become an author" />
-          <Link tabIndex={isSideBarOpen ? null : '-1'} to={'/become-an-author'}>Become an Author</Link>
+          <p onClick={handleSideBarBtn}>
+            <Link tabIndex={isSideBarOpen ? null : '-1'} to={'/become-an-author'}>Become an Author</Link>
+          </p>
             </div>
           )}
                       <div className={styles.iconAndLinkContainers}>
             <img src={logoutIcon} alt="logout" />
-            <Link tabIndex={isSideBarOpen ? null : '-1'} to={'/logout'}>Logout</Link>
+            <p onClick={handleSideBarBtn}>
+              <Link tabIndex={isSideBarOpen ? null : '-1'} to={'/logout'}>Logout</Link>
+            </p>
             </div>
 
         </>

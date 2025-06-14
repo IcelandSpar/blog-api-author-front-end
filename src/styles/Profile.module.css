@@ -40,3 +40,10 @@
 
   }
 }
+
+@media (max-width: 550px) {
+  .authorMainCont {
+    flex-direction: column;
+    align-items: center;
+  }
+}

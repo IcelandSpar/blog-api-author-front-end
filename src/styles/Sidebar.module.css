@@ -50,6 +50,10 @@
   gap: 1rem;
 }
 
+.iconAndLinkContainers p {
+  width: max-content;
+}
+
 .iconAndLinkContainers img {
   width: 25px;
   height: 25px;
