@@ -75,7 +75,7 @@ const BecomeAuthor = () => {
             {inputEmptyErr ? <p>You must submit a bio please.</p> : null}
             <div className={styles.labelAndTextAreaCont}>
               <label htmlFor="bio">Bio: </label>
-              <textarea ref={bioInputRef} rows='3' className={styles.formTextArea} id="bio" name="bio" required></textarea>
+              <textarea ref={bioInputRef} rows='3' className={styles.formTextArea} id="bio" name="bio" required autofocus></textarea>
             </div>
             <button onClick={(e) => handleSubmit(e)} className={styles.becomeAuthorBtn} type="button">Become an Author</button>
           </fieldset>

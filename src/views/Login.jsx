@@ -53,13 +53,13 @@ const Login = () => {
       <Sidebar/>
       <Navbar />
       <main className={styles.loginMainCont}>
-        <form onSubmit={handleSubmit} className={styles.loginForm}>
+        <form onSubmit={(e) => handleSubmit(e)} className={styles.loginForm}>
           <fieldset className={styles.fieldsetCont}>
             <legend className={styles.loginLegend}>Login</legend>
             {!loginErr ? null : <p>Username or password is incorrect, please try again.</p>}
             <div className={styles.labelAndInputCont}>
               <label className={styles.inputLabels} htmlFor="username">Username: </label>
-              <input className={styles.loginInputs} ref={usernameRef} type="text" id="username" name="username" autoComplete="true"/>
+              <input className={styles.loginInputs} ref={usernameRef} type="text" id="username" name="username" autoComplete="true" autoFocus/>
             </div>
             <div className={styles.labelAndInputCont}>
               <label className={styles.inputLabels} htmlFor="password">Password: </label>

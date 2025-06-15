@@ -13,7 +13,7 @@ const Register = () => {
             <legend className={styles.registerLegend}>Register</legend>
             <div className={styles.labelAndInputCont}>
               <label className={styles.inputLabels} htmlFor="username">Username: </label>
-              <input className={styles.registerInputs} type="text" id="username" name="username"/>
+              <input className={styles.registerInputs} type="text" id="username" name="username" autoFocus/>
             </div>
             <div className={styles.labelAndInputCont}>
               <label className={styles.inputLabels} htmlFor="password">Password: </label>
