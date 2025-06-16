@@ -11,7 +11,7 @@ import blogProfile from '../assets/blog-profile.png';
 const Profile = () => {
   const bioInputRef = useRef();
 
-  const { isAuthor, setIsAuthor } = useContext(UserContext);
+  const { isAuthor, setIsAuthor, isLoggedIn } = useContext(UserContext);
   const [ isFormOpen, setIsFormOpen ] = useState(false);
   const [ submitErr, setSubmitErr ] = useState(null);
   const [ inputEmptyErr, setInputEmptyErr ] = useState(null);
@@ -23,17 +23,35 @@ const Profile = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const token = localStorage.getItem('token');
+    const formData = new FormData();
+
+    formData.append('bio', bioInputRef.current.value);
+
+    fetch(`http://localhost:3000/author/update/${isAuthor.id}`, {
+      method: 'PUT',
+      body: new URLSearchParams(formData),
+      headers: {
+        Authorization: `Bearer ${token}`,
+      }
+    })
+    .then((res) => res.json())
+    .then((res) => console.log(res))
+
   }
 
   const handleTextarea = (e) => {
     e.preventDefault();
-    if(bioInputRef.current.value.length < 255) {
+    console.log(e.target.value.rows)
+    if(bioInputRef.current.value.length <= 255) {
     setIsAuthor({
       ...isAuthor,
       bio: e.target.value,
     })
     }
   }
+
+
 
   // const { isAuthor, setIsAuthor } = useContext(UserContext);
 
@@ -75,13 +93,17 @@ const Profile = () => {
       {!isFormOpen ? null : (
                 <form className={styles.becomeAuthorForm}>
                   <fieldset className={styles.becomeAuthorFieldSet}>
-                    <legend className={styles.formLegend}>Become an Author</legend>
+                    <legend className={styles.formLegend}>Update your Bio</legend>
                     {submitErr ? <p>Something went wrong...</p> : null}
                     {inputEmptyErr ? <p>You must submit a bio please.</p> : null}
                     <div className={styles.labelAndTextAreaCont}>
                       <label htmlFor="bio">Bio: </label>
+                      
                       {isAuthor == null ? null : (
-                      <textarea minLength={255} onChange={e => handleTextarea(e)} value={isAuthor.bio} ref={bioInputRef} rows='3' className={styles.formTextArea} id="bio" name="bio" required ></textarea>
+                      <div className={styles.countAndTextAreaCont}>
+                      <p className={styles.bioInputCount}>{isAuthor.bio.length} / 255</p>
+                      <textarea maxLength={255} onChange={e => handleTextarea(e)} value={isAuthor.bio} ref={bioInputRef} rows='3' className={styles.formTextArea} id="bio" name="bio" required ></textarea>
+                      </div>
                       )}
                     </div>
                     <button onClick={(e) => handleSubmit(e)} className={styles.becomeAuthorBtn} type="button">Update bio</button>

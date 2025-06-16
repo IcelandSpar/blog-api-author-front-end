@@ -70,10 +70,26 @@
   border-radius: 15px;
 }
 
+.countAndTextAreaCont {
+  position: relative;
+}
+
 .formTextArea {
   resize: vertical;
   font-size: 1.5rem;
   padding: .5rem 1rem;
+  width: 100%;
+}
+
+.bioInputCount {
+  padding: .5rem 1rem;
+  border-radius: 0 0 0 15px;
+  font-size: 1rem;
+  font-weight: 700;
+  position: absolute;
+  color: white;
+  right: 0;
+  background-color:rgba(0,0,0,0.5);
 }
 
 .becomeAuthorBtn {
