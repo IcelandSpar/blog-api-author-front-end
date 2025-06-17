@@ -1,0 +1,15 @@
+.authorBlogsMainCont {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.blogsHeading {
+  text-align: center;
+  margin: 0 0 1rem 0;
+  font-size: 2rem;
+}
+
+.noBlogsMsg {
+  text-align: center;
+}

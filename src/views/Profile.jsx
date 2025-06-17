@@ -38,6 +38,8 @@ const Profile = () => {
     .then((res) => res.json())
     .then((res) => console.log(res))
 
+    setIsFormOpen(prev => !prev)
+
   }
 
   const handleTextarea = (e) => {
