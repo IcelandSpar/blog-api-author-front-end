@@ -37,28 +37,32 @@ const Blogs = () => {
         <h1 className={styles.blogsHeading}>Blogs</h1>
         {authorBlogs.length > 0 ? (
           <>
-            <ul>
+            <ul className={styles.blogsUl}>
               {authorBlogs.map((blog) => {
                 return (
-                  <li key={blog.id}>
+                  <li className={styles.blogListItemCont} key={blog.id}>
                     <p>{blog.title}</p>
                     <p>{blog.published ? "Published" : "Not published"}</p>
-                    <p>{formatRelative(blog.createdAt, new Date())}</p>
-                    <p>{formatRelative(blog.modifiedAt, new Date())}</p>
-                    <p>
-                      Likes:{" "}
-                      {blog.UsersLikedBlogs.reduce((total, val) => {
-                        return val.like ? total + 1 : total + 0;
-                      }, 0)}
-                    </p>
+                    <p>Posted: {formatRelative(blog.createdAt, new Date())}</p>
+                    {formatRelative(blog.createdAt, new Date()) != formatRelative(blog.modifiedAt, new Date()) ? (
+                                          <p>Modified: {formatRelative(blog.modifiedAt, new Date())}</p>
 
-                    <p>
-                      Dislikes:{" "}
-                      {blog.UsersLikedBlogs.reduce((total, val) => {
-                        return !val.like ? total + 1 : total + 0;
-                      }, 0)}
-                    </p>
-                    <p>Comments: {blog._count.Comments}</p>
+                    ) : null}
+                    <div className={styles.likesDislikesCommentsCont}>
+                      <p className={styles.likes}>
+                        Likes:{" "}
+                        {blog.UsersLikedBlogs.reduce((total, val) => {
+                          return val.like ? total + 1 : total + 0;
+                        }, 0)}
+                      </p>
+                      <p className={styles.dislikes}>
+                        Dislikes:{" "}
+                        {blog.UsersLikedBlogs.reduce((total, val) => {
+                          return !val.like ? total + 1 : total + 0;
+                        }, 0)}
+                      </p>
+                      <p className={styles.comments}>Comments: {blog._count.Comments}</p>
+                    </div>
                   </li>
                 );
               })}
