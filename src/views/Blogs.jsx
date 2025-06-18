@@ -8,6 +8,10 @@ import styles from "../styles/Blogs.module.css";
 import Sidebar from "./partials/Sidebar";
 import Navbar from "./partials/Navbar";
 
+import likeIcon from '../assets/thumb_up.svg';
+import dislikeIcon from '../assets/thumb_down.svg';
+import commentsIcon from '../assets/person-msg-icon.svg';
+
 const Blogs = () => {
   const { isLoggedIn, isAuthor } = useContext(UserContext);
 
@@ -41,7 +45,7 @@ const Blogs = () => {
               {authorBlogs.map((blog) => {
                 return (
                   <li className={styles.blogListItemCont} key={blog.id}>
-                    <p>{blog.title}</p>
+                    <h3><Link to={`/blogs/${blog.id}`}>{blog.title}</Link></h3>
                     <p>{blog.published ? "Published" : "Not published"}</p>
                     <p>Posted: {formatRelative(blog.createdAt, new Date())}</p>
                     {formatRelative(blog.createdAt, new Date()) != formatRelative(blog.modifiedAt, new Date()) ? (
@@ -49,19 +53,28 @@ const Blogs = () => {
 
                     ) : null}
                     <div className={styles.likesDislikesCommentsCont}>
-                      <p className={styles.likes}>
-                        Likes:{" "}
-                        {blog.UsersLikedBlogs.reduce((total, val) => {
-                          return val.like ? total + 1 : total + 0;
-                        }, 0)}
-                      </p>
-                      <p className={styles.dislikes}>
-                        Dislikes:{" "}
-                        {blog.UsersLikedBlogs.reduce((total, val) => {
-                          return !val.like ? total + 1 : total + 0;
-                        }, 0)}
-                      </p>
-                      <p className={styles.comments}>Comments: {blog._count.Comments}</p>
+                      <div className={styles.likeAndDislikeOnlyCont}>
+                        <div className={styles.likeCont}>
+                          <img className={styles.likeIcon} width='25px'  src={likeIcon} alt="likes" />
+                          <p>
+                            {blog.UsersLikedBlogs.reduce((total, val) => {
+                              return val.like ? total + 1 : total + 0;
+                            }, 0)}
+                          </p>
+                        </div>
+                        <div className={styles.dislikesCont}>
+                          <img className={styles.dislikeIcon} src={dislikeIcon} alt="dislikes" />
+                          <p>
+                            {blog.UsersLikedBlogs.reduce((total, val) => {
+                              return !val.like ? total + 1 : total + 0;
+                            }, 0)}
+                          </p>
+                        </div>
+                      </div>
+                      <div className={styles.commentsCont}>
+                        <img src={commentsIcon} alt="comments" />
+                        <p>{blog._count.Comments}</p>
+                      </div>
                     </div>
                   </li>
                 );
