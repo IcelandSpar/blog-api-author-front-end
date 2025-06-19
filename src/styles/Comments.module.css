@@ -1,0 +1,179 @@
+.listItemCont {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 2px solid whitesmoke;
+  padding: 1rem;
+  gap: 1rem;
+
+}
+
+.commenUserAndHeartCont {
+  display: flex;
+  justify-content: space-between;
+}
+
+.commentTitleUserHeartCont {
+  display: flex;
+  flex-direction: column;
+}
+
+.commentHeader {
+  font-size: 1.4rem;
+}
+
+.profilePicCommentUserCont {
+  display: flex;
+  gap: .5rem;
+}
+
+.titleAndHeartCont {
+  display: flex;
+  justify-content: space-between;
+}
+
+.commentProfileIcon {
+  transform: rotateY(180deg);
+}
+
+.commentUser {
+}
+
+.commentAuthorHeart {
+}
+
+.authorHeartAndIconCont {
+  display: flex;
+  gap: .3rem;
+  align-items: center;
+}
+
+.bookmarkHeartIcon {
+  filter: invert(100%) sepia(0%) saturate(7500%) hue-rotate(24deg) brightness(104%) contrast(93%);
+}
+
+.postedAndLikeCont {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.postedTimeStamps {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+
+.likeAndParaBtn {
+  display: flex;
+   gap: .5rem;
+   align-items: center;
+   border: 1px solid whitesmoke;
+   padding: .5rem 1rem;
+   border-radius: 30px;
+   background-color: transparent;
+   color: whitesmoke;
+   font-size: 1rem;
+   font-weight: 700;
+   cursor: pointer;
+}
+
+
+
+.likeIcon {
+  filter: invert(100%) sepia(0%) saturate(7500%) hue-rotate(24deg) brightness(104%) contrast(93%);
+}
+
+.commentLikeAndDislikeCont {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+}
+
+.activeCommentLike {
+  background-color:rgba(0,0,0,0.4);
+}
+
+.loadingLikeCont {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  justify-content: flex-end;
+}
+
+.loadingLikeIcon {
+  animation: 1s spin infinite;
+  filter: invert(100%) sepia(0%) saturate(7500%) hue-rotate(24deg) brightness(104%) contrast(93%);
+}
+
+.logInMsgParaLink {
+  margin-left: auto;
+}
+
+.commentLikeBtn:hover img {
+  animation: .8s likeHover infinite;
+}
+
+.commentDislikeBtn:hover img {
+  animation: .8s dislikeHover infinite;
+
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes likeHover {
+  from {
+    transform: translateY(0px);
+  }
+
+  30% {
+    rotate: 10deg;
+  }
+
+  50% {
+    transform: translateY(-3px);
+    rotate: 0deg;
+  }
+
+  70% {
+    rotate: -10deg;
+
+  }
+
+  to {
+    transform: translateY(0px);
+
+  }
+}
+
+@keyframes dislikeHover {
+  from {
+    transform: translateY(0px);
+  }
+
+  30% {
+    rotate: 10deg;
+  }
+
+  50% {
+    transform: translateY(3px);
+    rotate: 0deg;
+  }
+
+  70% {
+    rotate: -10deg;
+
+  }
+
+  to {
+    transform: translateY(0px);
+
+  }
+}
