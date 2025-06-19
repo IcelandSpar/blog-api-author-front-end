@@ -1,0 +1,214 @@
+.blogPage {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-rows: 1fr 25fr 1fr;
+}
+
+.navStyle {
+  grid-column: 1 / 4;
+  grid-row: 1 / 2;
+  justify-self: center;
+}
+
+.blogsMainCont {
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 85%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.blogTitle {
+  text-align: center;
+  font-size: 2rem;
+}
+
+.blogContent {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+}
+
+.commentHeading {
+  text-align: center;
+  margin: 1rem 0;
+  font-size: 2rem;
+}
+
+.blogLikeDislikeBtnCont {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+.blogLikeDislikeBtnCont button {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  cursor: pointer;
+  border-radius: 30px;
+  border: none;
+  font-weight: 600;
+}
+
+.activeLike {
+  background-color:rgba(0,0,0,0.4);
+  color: white;
+
+}
+
+.activeDislike {
+  background-color:rgba(0,0,0,0.4);
+  color: white;
+}
+
+.activeSvg {
+  filter: invert(100%) sepia(0%) saturate(7500%) hue-rotate(24deg) brightness(104%) contrast(93%);
+
+}
+
+.notActive {
+
+}
+
+.blogLikeDislikeBtnCont button {
+  font-size: 1.2rem;
+  padding: .5rem 1rem;
+}
+
+.updateCountPara {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1rem;
+}
+
+.cachedIcon {
+  animation: 1s spin infinite;
+  filter: invert(100%) sepia(0%) saturate(7500%) hue-rotate(24deg) brightness(104%) contrast(93%);
+}
+
+.BlogUl {
+  display: flex;
+  flex-direction: column;
+}
+
+.mustBeLoggedInMsg {
+  text-align: center;
+  margin-top: 1rem;
+  border-top: .5px solid rgba(245, 245, 245, 0.747);
+  border-bottom: .5px solid rgba(245, 245, 245, 0.747);
+  padding: 1rem 0;
+}
+
+.commentsTitleAndDropDownCont {
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+  align-items: center;
+}
+
+.commentHeading {
+  grid-column: 2 / 3;
+}
+
+.dropDownSelect {
+  padding: .5rem 1rem;
+  font-size: 1.2rem;
+  margin: 1rem 0;
+  color: white;
+  background-color: transparent;
+  border: 2px solid gray;
+}
+
+.dropDownSelect option {
+  background-color: #432E54;
+}
+
+.blogLikeBtn:hover img {
+  animation: .8s likeHover infinite;
+
+}
+
+.blogDislikeBtn:hover img {
+  animation: .8s dislikeHover infinite;
+}
+
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes likeHover {
+  from {
+    transform: translateY(0px);
+  }
+
+  30% {
+    rotate: 10deg;
+  }
+
+  50% {
+    transform: translateY(-3px);
+    rotate: 0deg;
+  }
+
+  70% {
+    rotate: -10deg;
+
+  }
+
+  to {
+    transform: translateY(0px);
+
+  }
+}
+
+@keyframes dislikeHover {
+  from {
+    transform: translateY(0px);
+  }
+
+  30% {
+    rotate: 10deg;
+  }
+
+  50% {
+    transform: translateY(3px);
+    rotate: 0deg;
+  }
+
+  70% {
+    rotate: -10deg;
+
+  }
+
+  to {
+    transform: translateY(0px);
+
+  }
+}
+
+@media (max-width: 1200px) {
+  .blogPage {
+    grid-template-columns: 1fr;
+  }
+
+  .blogsMainCont {
+    grid-column: 1 / 2;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+}
+
+
