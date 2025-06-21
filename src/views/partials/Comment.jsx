@@ -12,7 +12,7 @@ import cachedIcon from '../../assets/cached.svg';
 import commentProfileIcon from '../../assets/person-msg-icon.svg';
 
 
-const Comment = ({comment, blogAuthor}) => {
+const Comment = ({comment, blogAuthor, commentIndx, setComments}) => {
   const { isLoggedIn } = useContext(UserContext);
 
   const updateCountTimerInst = useRef({timer: 3});
@@ -116,6 +116,27 @@ const Comment = ({comment, blogAuthor}) => {
     }
   };
 
+  const handleFav = (e) => {
+    e.preventDefault();
+  };
+
+  const handleDelete = (e) => {
+    e.preventDefault();
+    const token = localStorage.getItem('token');
+
+    fetch(`http://localhost:3000/comments/delete/${comment.id}`, {
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    
+    setComments((prev) => {
+      const removedArr = prev.filter((value, index) => index != commentIndx)
+      return removedArr
+    })  
+  };
+
   return (
     <li className={styles.listItemCont}>
       <div className={styles.commentTitleUserHeartCont}>
@@ -157,11 +178,15 @@ const Comment = ({comment, blogAuthor}) => {
         <p className={styles.logInMsgParaLink}>You must be <Link to='/login'>logged in</Link> to like a comment</p>
       )}
         {!loadingLikeSelect ? null : (
-      <div className={styles.loadingLikeCont}>
+    <div className={styles.loadingLikeCont}>
       <img className={styles.loadingLikeIcon} src={cachedIcon} alt="loading" />
       <p>Updating Like {updateCount}</p>
     </div>
         )}
+        <div className={styles.authorCommentControls}>
+          <button onClick={handleFav} className={styles.authorControlBtns}>Favorite</button>
+          <button onClick={handleDelete} className={styles.authorControlBtns}>Delete</button>
+        </div>
     </li>
   )
 };
