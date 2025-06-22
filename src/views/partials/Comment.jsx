@@ -10,6 +10,8 @@ import dislikeIcon from '../../assets/thumb_down.svg';
 import UserContext from '../../UserContext.jsx';
 import cachedIcon from '../../assets/cached.svg';
 import commentProfileIcon from '../../assets/person-msg-icon.svg';
+import brokenHeartIcon from '../../assets/broken-heart.svg';
+import deleteIcon from '../../assets/delete-icon.svg';
 
 
 const Comment = ({comment, blogAuthor, commentIndx, setComments}) => {
@@ -118,6 +120,35 @@ const Comment = ({comment, blogAuthor, commentIndx, setComments}) => {
 
   const handleFav = (e) => {
     e.preventDefault();
+    console.log(comment.authorHeartedComments.length <= 0)
+    if(comment.authorHeartedComments.length <= 0) {
+    setComments((prev) => {
+      const mappedComments = prev.map((mappedComment) => {
+        if(mappedComment.id == comment.id) {
+          return {
+            ...mappedComment, authorHeartedComments: [{hearted: true}],
+          }
+        } else {
+          return mappedComment
+        }
+      })
+      return mappedComments;
+    })
+    } else {
+    setComments((prev) => {
+      const mappedComments = prev.map((mappedComment) => {
+        if(mappedComment.id == comment.id) {
+          return {
+            ...mappedComment, authorHeartedComments: [],
+          }
+        } else {
+          return mappedComment
+        }
+      })
+      return mappedComments;
+    })
+    }
+
   };
 
   const handleDelete = (e) => {
@@ -184,8 +215,8 @@ const Comment = ({comment, blogAuthor, commentIndx, setComments}) => {
     </div>
         )}
         <div className={styles.authorCommentControls}>
-          <button onClick={handleFav} className={styles.authorControlBtns}>Favorite</button>
-          <button onClick={handleDelete} className={styles.authorControlBtns}>Delete</button>
+          <button onClick={handleFav} className={styles.authorControlBtns}>{comment.authorHeartedComments.length <= 0 ? (<><p>Love</p><img className={styles.bookmarkHeartIcon} src={bookmarkHeart} alt='Favorite' height='25px' width='25px'/></>) : (<><p>Unlove</p><img className={styles.bookmarkBrokenHeartIcon} src={brokenHeartIcon} alt='remove from favorites' height='25px' width='25px'/></>)}</button>
+          <button onClick={handleDelete} className={styles.authorControlBtns}><p>Delete Comment</p><img src={deleteIcon} alt="delete" width='25px' height='25'/></button>
         </div>
     </li>
   )
