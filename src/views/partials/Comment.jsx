@@ -15,7 +15,7 @@ import deleteIcon from '../../assets/delete-icon.svg';
 
 
 const Comment = ({comment, blogAuthor, commentIndx, setComments}) => {
-  const { isLoggedIn } = useContext(UserContext);
+  const { isLoggedIn, isAuthor } = useContext(UserContext);
 
   const updateCountTimerInst = useRef({timer: 3});
   const timerInstance = useRef({timer: 0});
@@ -52,9 +52,6 @@ const Comment = ({comment, blogAuthor, commentIndx, setComments}) => {
       .then((res) => res.json())
       .then((res) => console.log(res))
       .finally(() => setLoadingLikeSelect(false))
-      
-      console.log(currentLikeStatus)
-      console.log(commentId)
 
     }, 3000)
 
@@ -120,8 +117,18 @@ const Comment = ({comment, blogAuthor, commentIndx, setComments}) => {
 
   const handleFav = (e) => {
     e.preventDefault();
-    console.log(comment.authorHeartedComments.length <= 0)
-    if(comment.authorHeartedComments.length <= 0) {
+    if(comment.authorHeartedComments.length <= 0 && isLoggedIn) {
+    const token = localStorage.getItem('token');
+    
+    fetch(`http://localhost:3000/comments/author-heart/${isAuthor.id}/${comment.id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      },
+      method: 'POST'
+    })
+    .then((res) => res.json())
+    .then((res) => console.log(res));
+
     setComments((prev) => {
       const mappedComments = prev.map((mappedComment) => {
         if(mappedComment.id == comment.id) {
@@ -135,6 +142,16 @@ const Comment = ({comment, blogAuthor, commentIndx, setComments}) => {
       return mappedComments;
     })
     } else {
+          const token = localStorage.getItem('token');
+
+          fetch(`http://localhost:3000/comments/author-heart/${isAuthor.id}/${comment.id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      },
+      method: 'POST'
+    })
+    .then((res) => res.json())
+    .then((res) => console.log(res));
     setComments((prev) => {
       const mappedComments = prev.map((mappedComment) => {
         if(mappedComment.id == comment.id) {
