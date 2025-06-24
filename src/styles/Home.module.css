@@ -1,0 +1,71 @@
+.homePage {
+  display: flex;
+}
+
+.navStyle {
+  padding: none;
+  align-self: center;
+  justify-self: center;
+}
+
+.homeMainCont {
+  display: flex;
+  flex-direction: column;
+  width: 85%;
+  max-width: 1000px;
+  margin: 0 auto;
+  grid-column: 2 / 3;
+  gap: 2rem;
+  margin-bottom: 2rem;
+
+}
+
+.homeFrontPageSect {
+
+}
+
+.frontPageImg {
+  rotate: 10deg;
+  border-radius: 15px;
+}
+
+.imgParaCont {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  font-size: 2rem;
+  text-align: center;
+  align-items: center;
+  gap: 1rem;
+  justify-items: center;
+}
+
+.firstContImg {
+  object-fit: contain;
+  width: 100%;
+  border-radius: 15px;
+}
+
+
+
+@media (max-width: 800px) {
+  .homePage {
+
+  }
+
+  .navStyle {
+
+  }
+
+  .homeMainCont {
+  }
+
+  .imgParaCont {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .imgParaCont {
+    font-size: 1rem;
+  }
+}
