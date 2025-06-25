@@ -136,6 +136,68 @@
   justify-content: center;
   align-items: center;
   gap: .5rem;
+  transition: border .5s ease-out;
+}
+
+
+
+.authorControlBtns:hover {
+  border: 2px solid rgba(245, 245, 245, 0.918);
+}
+
+.authorControlBtns:hover .bookmarkHeartIcon {
+  animation: bounce .6s  infinite ease-out;
+}
+
+.authorControlBtns:hover .deleteIcon {
+  animation: 1s shake infinite;
+}
+
+@keyframes shake {
+  from {
+    transform: rotate(0deg);
+  }
+
+  15% {
+    transform: rotate(15deg);
+
+  }
+
+  30% {
+    transform: rotate(-15deg);
+
+  }
+
+  50% {
+        transform: rotate(0deg);
+
+  }
+
+  to {
+    transform: rotate(0deg);
+
+  }
+}
+
+@keyframes bounce {
+  from {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-3px);
+    scale: 1.1;
+  }
+
+  70% {
+    transform: translateY(0px);
+
+  }
+
+  to {
+    transform: translateY(0px);
+
+  }
 }
 
 
