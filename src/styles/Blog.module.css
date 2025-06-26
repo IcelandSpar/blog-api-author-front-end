@@ -138,9 +138,6 @@
   animation: .8s dislikeHover infinite;
 }
 
-.blogDislikeBtn:hover .deleteIcon {
-  animation: .8s dislikeHover infinite;
-}
 
 @keyframes spin {
   from {

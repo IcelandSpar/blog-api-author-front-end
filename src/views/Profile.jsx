@@ -104,7 +104,7 @@ const Profile = () => {
                       {isAuthor == null ? null : (
                       <div className={styles.countAndTextAreaCont}>
                       <p className={styles.bioInputCount}>{isAuthor.bio.length} / 255</p>
-                      <textarea maxLength={255} onChange={e => handleTextarea(e)} value={isAuthor.bio} ref={bioInputRef} rows='3' className={styles.formTextArea} id="bio" name="bio" required ></textarea>
+                      <textarea maxLength={255} onChange={e => handleTextarea(e)} value={isAuthor.bio} ref={bioInputRef} rows='3' className={styles.formTextArea} id="bio" name="bio" required autoFocus ></textarea>
                       </div>
                       )}
                     </div>
