@@ -3,25 +3,19 @@ import { useRef, useEffect, useState } from 'react';
 
 import Navbar from './partials/Navbar.jsx';
 import Sidebar from './partials/Sidebar.jsx';
+import BlogEditor from './partials/BlogEditor.jsx';
 
 import styles from '../styles/PostBlog.module.css';
 
 const PostBlog = () => {
-  const [ html, setHTML ] = useState({__html: ''});
-
-
-  useEffect(() => {
-
-  }, [])
-
-  //     import.meta.env.VITE_API_KEY
-
 
   return (
     <>
     <Navbar/>
     <Sidebar/>
       <main className={styles.postBlogMainCont}>
+      <BlogEditor/>
+
       </main>
     </>
   )
