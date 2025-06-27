@@ -72,11 +72,13 @@ const BlogPreviews = ({ styles, blog }) => {
           <p>Updating in {updateCounter}</p>
         </div>
       )}
-      <p>Posted: {formatRelative(blog.createdAt, new Date())}</p>
+      <div>
+              <p>Posted: {formatRelative(blog.createdAt, new Date())}</p>
       {formatRelative(blog.createdAt, new Date()) !=
       formatRelative(blog.modifiedAt, new Date()) ? (
         <p>Modified: {formatRelative(blog.modifiedAt, new Date())}</p>
       ) : null}
+      </div>
       <div className={styles.likesDislikesCommentsCont}>
         <div className={styles.likeAndDislikeOnlyCont}>
           <div className={styles.likeCont}>

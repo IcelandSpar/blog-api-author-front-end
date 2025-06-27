@@ -53,7 +53,7 @@ const Login = () => {
       <Sidebar/>
       <Navbar />
       <main className={styles.loginMainCont}>
-        <form onSubmit={(e) => handleSubmit(e)} className={styles.loginForm}>
+        <form onSubmit={handleSubmit} className={styles.loginForm}>
           <fieldset className={styles.fieldsetCont}>
             <legend className={styles.loginLegend}>Login</legend>
             {!loginErr ? null : <p>Username or password is incorrect, please try again.</p>}
@@ -65,7 +65,7 @@ const Login = () => {
               <label className={styles.inputLabels} htmlFor="password">Password: </label>
               <input className={styles.loginInputs} ref={passwordRef} type="password" id="password" name="password"/>
             </div>
-            <button type="button" onClick={handleSubmit} className={styles.loginBtn}>Login</button>
+            <button type="submit" onClick={handleSubmit} className={styles.loginBtn}>Login</button>
           </fieldset>
         </form>
       </main>

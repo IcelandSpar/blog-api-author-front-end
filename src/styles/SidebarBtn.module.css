@@ -1,11 +1,16 @@
 .sideBarBtn {
   background-color: transparent;
-  border: 1px solid gray;
+  border: 2px solid gray;
   display: flex;
   justify-content: center;
   border-radius: 7px;
   padding: .3rem;
   cursor: pointer;
+  transition: border .5s ease-out;
+}
+
+.sideBarBtn:hover {
+  border: 2px solid rgb(211, 211, 211);
 }
 
 .sideBarIcon {
