@@ -57,6 +57,9 @@
   display: flex;
   gap: 1rem;
   justify-content: space-between;
+  align-items: stretch;
+  flex-wrap: wrap;
+  height: 100%;
 }
 
 .likeAndDislikeOnlyCont {
@@ -75,8 +78,27 @@
   align-items: center;
 }
 
+.editDeleteCont {
+  display: flex;
+  gap: .5rem;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.editDeleteParaIconCont {
+  display: flex;
+  padding: .5rem;
+  align-items: center;
+  background-color: transparent;
+  color: white;
+  font-size: 1.3rem;
+  border: 2px solid whitesmoke;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
 .commentsCont {
-  justify-self: flex-end;
 }
 
 .likeIcon, .dislikeIcon {

@@ -42,6 +42,10 @@
   line-height: 1.9em;
 }
 
+.blogContent ul li {
+  margin-left: 2rem;
+}
+
 .commentHeading {
   text-align: center;
   margin: 1rem 0;
