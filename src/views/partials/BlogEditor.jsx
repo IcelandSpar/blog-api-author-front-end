@@ -1,26 +1,42 @@
-import { useRef } from 'react';
+import { useRef, useContext } from 'react';
 import { Editor } from '@tinymce/tinymce-react';
+
+import UserContext from '../../UserContext';
 
 import styles from '../../styles/BlogEditor.module.css';
 // import './App.css';
 
 export default function BlogEditor() {
+  const { isLoggedIn, isAuthor } = useContext(UserContext);
+  const titleRef = useRef(null);
   const editorRef = useRef(null);
   const publishCheckboxRef = useRef(null);
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (editorRef.current) {
-      console.log(editorRef.current.getContent());
+
+    if(isLoggedIn && isAuthor && editorRef.current) {
+      const token = localStorage.getItem('token');
+      const formData = new FormData();
+      formData.append('title', titleRef.current.value);
+      formData.append('content', editorRef.current.getContent());
+      formData.append('published', publishCheckboxRef.current.checked);
+      formData.append('authorId', isAuthor.id);
+      fetch(`http://localhost:3000/blogs/post-blog`, {
+        method: 'POST',
+        body: new URLSearchParams(formData),
+        headers: {
+          Authorization: `Bearer ${token}`,
+        }
+      })
     }
 
-    console.log(publishCheckboxRef.current.checked)
   };
 
   return (
     <form>
       <div className={styles.labelAndInputCont}>
         <label htmlFor="title">Title</label>
-        <input placeholder='My Title...' className={styles.titleInput} type="text" name='title' id='title' required/>
+        <input ref={titleRef} placeholder='My Title...' className={styles.titleInput} type="text" name='title' id='title' required/>
       </div>
       <Editor
         apiKey={import.meta.env.VITE_API_KEY}
