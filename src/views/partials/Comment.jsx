@@ -232,8 +232,8 @@ const Comment = ({comment, blogAuthor, commentIndx, setComments}) => {
     </div>
         )}
         <div className={styles.authorCommentControls}>
-          <button onClick={handleFav} className={styles.authorControlBtns}>{comment.authorHeartedComments.length <= 0 ? (<><p>Love</p><img className={styles.bookmarkHeartIcon} src={bookmarkHeart} alt='Favorite' height='25px' width='25px'/></>) : (<><p>Unlove</p><img className={styles.bookmarkBrokenHeartIcon} src={brokenHeartIcon} alt='remove from favorites' height='25px' width='25px'/></>)}</button>
-          <button onClick={handleDelete} className={styles.authorControlBtns}><p>Delete Comment</p><img src={deleteIcon} className={styles.deleteIcon} alt="delete" width='25px' height='25'/></button>
+          <button onClick={handleFav} className={`${styles.authorControlBtns} ${styles.authorHeartBtn}`}>{comment.authorHeartedComments.length <= 0 ? (<><p>Love</p><img className={styles.bookmarkHeartIcon} src={bookmarkHeart} alt='Favorite' height='25px' width='25px'/></>) : (<><p>Unlove</p><img className={styles.bookmarkBrokenHeartIcon} src={brokenHeartIcon} alt='remove from favorites' height='25px' width='25px'/></>)}</button>
+          <button onClick={handleDelete} className={`${styles.authorControlBtns} ${styles.deleteCommentBtn}`}><p>Delete Comment</p><img src={deleteIcon} className={styles.deleteIcon} alt="delete" width='25px' height='25'/></button>
         </div>
     </li>
   )

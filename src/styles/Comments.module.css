@@ -141,16 +141,27 @@
 
 
 
+
 .authorControlBtns:hover {
   border: 2px solid rgba(245, 245, 245, 0.918);
+}
+
+.deleteCommentBtn:hover {
+  border: 2px solid #ff0033;
+
 }
 
 .authorControlBtns:hover .bookmarkHeartIcon {
   animation: bounce .6s  infinite ease-out;
 }
 
+.authorControlBtns:hover .bookmarkBrokenHeartIcon {
+    animation: 1s shake infinite;
+}
+
 .authorControlBtns:hover .deleteIcon {
   animation: 1s shake infinite;
+  filter: invert(15%) sepia(70%) saturate(7474%) hue-rotate(342deg) brightness(96%) contrast(111%);
 }
 
 @keyframes shake {
