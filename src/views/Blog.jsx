@@ -2,6 +2,8 @@ import { useEffect, useState, useContext, useRef } from "react";
 import { useParams, Link } from "react-router-dom";
 import UserContext from "../UserContext";
 import { formatRelative } from "date-fns";
+import parse from 'html-react-parser';
+import DOMPurify from 'dompurify';
 
 import Navbar from "./partials/Navbar";
 import Sidebar from "./partials/Sidebar";
@@ -37,6 +39,14 @@ const Blog = () => {
   const [ updateCount, setUpdateCount ] = useState(null);
 
   const token = localStorage.getItem('token');
+
+  const parsedHtml = (content) => {
+    const cleanHtmlString = DOMPurify.sanitize(content,
+        {USE_Profiles: {html: true}}
+      );
+    const html = parse(cleanHtmlString);
+    return html
+  }
 
 
   const  sendCurrentLike = (currentState) => {
@@ -159,6 +169,7 @@ const Blog = () => {
     fetch(`http://localhost:3000/blogs/${blogId}`)
     .then((response) => response.json())
     .then((response) => {
+
       setBlog(response);
       setLike(response._count.UsersLikedBlogs);
       setDislike(response.dislikes);
@@ -217,7 +228,7 @@ const Blog = () => {
           <div className={styles.blogContent}>
             <h1 className={styles.blogTitle}>{blog.title}</h1>
             <p>Written By: <Link to={`/profile`}>{blog.author.user.username}</Link></p>
-            <p>{blog.content}</p>
+            <div className={styles.blogContentCont}>{blog.content && parsedHtml(blog.content)}</div>
             <p>Created: {formatRelative(blog.createdAt, new Date())}</p>
             <p>Last Modified: {formatRelative(blog.modifiedAt, new Date())}</p>
             {!isLoggedIn ? null : (
