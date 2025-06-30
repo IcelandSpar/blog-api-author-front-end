@@ -11,8 +11,8 @@ import deleteIcon from '../../assets/delete-icon.svg';
 import dislikeIcon from "../../assets/thumb_down.svg";
 import commentsIcon from "../../assets/person-msg-icon.svg";
 
-const BlogPreviews = ({ styles, blog }) => {
-  const { isLoggedIn } = useContext(UserContext);
+const BlogPreviews = ({ styles, blog, setAuthorBlogs }) => {
+  const { isLoggedIn, isAuthor } = useContext(UserContext);
   const publishedCountTimeoutInstance = useRef({ timer: 3 });
   const publishedCountIntervalInstance = useRef({ timer: 0 });
   const [published, setPublished] = useState(blog.published);
@@ -53,6 +53,28 @@ const BlogPreviews = ({ styles, blog }) => {
       }
     }, 1000);
   };
+
+  const handleDelete = (e, blogId) => {
+      e.preventDefault();
+      if(isLoggedIn && isAuthor) {
+        const token = localStorage.getItem('token');
+        fetch(`http://localhost:3000/author/delete-blog/${blogId}`, {
+          method: 'DELETE',
+          headers: {
+            Authorization: `Bearer ${token}`,
+          }
+        })
+        .then((res) => {
+          if(res.ok) {
+            setAuthorBlogs((prev) => prev.filter((blog) => blog.id != blogId))
+
+          }
+          return res.json();
+        })
+        .then((res) => console.log(res))
+        .catch((err) => console.error(err))
+      }
+    }
 
   return (
     <li className={styles.blogListItemCont}>
@@ -117,7 +139,7 @@ const BlogPreviews = ({ styles, blog }) => {
         </div>
         <div className={styles.editDeleteCont}>
           <button type="button" className={styles.editDeleteParaIconCont}><img src={editIcon} alt="edit blog" /><p>Edit Blog</p></button>
-          <button type="button" className={styles.editDeleteParaIconCont}><img src={deleteIcon} alt="delete blog" /><p>Delete Blog</p></button>
+          <button onClick={(e) => handleDelete(e, blog.id)} type="button" className={styles.editDeleteParaIconCont}><img src={deleteIcon} alt="delete blog" /><p>Delete Blog</p></button>
         </div>
       </div>
     </li>

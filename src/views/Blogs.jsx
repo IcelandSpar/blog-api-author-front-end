@@ -41,7 +41,7 @@ const Blogs = () => {
             <ul className={styles.blogsUl}>
               {authorBlogs.map((blog) => {
                 return (
-                  <BlogPreviews key={blog.id} blog={blog} styles={styles} />
+                  <BlogPreviews key={blog.id} blog={blog} setAuthorBlogs={setAuthorBlogs} styles={styles} />
                 );
               })}
             </ul>
