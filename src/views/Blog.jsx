@@ -229,8 +229,8 @@ const Blog = () => {
             <h1 className={styles.blogTitle}>{blog.title}</h1>
             <p>Written By: <Link to={`/profile`}>{blog.author.user.username}</Link></p>
             <div className={styles.blogContentCont}>{blog.content && parsedHtml(blog.content)}</div>
-            <p>Created: {formatRelative(blog.createdAt, new Date())}</p>
-            <p>Last Modified: {formatRelative(blog.modifiedAt, new Date())}</p>
+            <p>Written: {formatRelative(blog.createdAt, new Date())}</p>
+            <p>Last Edited: {formatRelative(blog.modifiedAt, new Date())}</p>
             {!isLoggedIn ? null : (
               <>
             <div className={styles.blogLikeDislikeBtnCont}>

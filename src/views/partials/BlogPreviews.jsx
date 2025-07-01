@@ -4,10 +4,12 @@ import { formatRelative } from "date-fns";
 
 import UserContext from "../../UserContext";
 
+import DeleteModal from "./DeleteModal";
+
 import likeIcon from "../../assets/thumb_up.svg";
-import editIcon from '../../assets/post-blog-icon.svg';
+import editIcon from "../../assets/post-blog-icon.svg";
 import cachedIcon from "../../assets/cached.svg";
-import deleteIcon from '../../assets/delete-icon.svg';
+import deleteIcon from "../../assets/delete-icon.svg";
 import dislikeIcon from "../../assets/thumb_down.svg";
 import commentsIcon from "../../assets/person-msg-icon.svg";
 
@@ -17,6 +19,7 @@ const BlogPreviews = ({ styles, blog, setAuthorBlogs }) => {
   const publishedCountIntervalInstance = useRef({ timer: 0 });
   const [published, setPublished] = useState(blog.published);
   const [updateCounter, setUpdateCounter] = useState(null);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
   const handlePublishedCheckbox = (e) => {
     clearInterval(publishedCountIntervalInstance.current.timer);
@@ -55,29 +58,43 @@ const BlogPreviews = ({ styles, blog, setAuthorBlogs }) => {
   };
 
   const handleDelete = (e, blogId) => {
-      e.preventDefault();
-      if(isLoggedIn && isAuthor) {
-        const token = localStorage.getItem('token');
-        fetch(`http://localhost:3000/author/delete-blog/${blogId}`, {
-          method: 'DELETE',
-          headers: {
-            Authorization: `Bearer ${token}`,
-          }
-        })
+    e.preventDefault();
+    if (isLoggedIn && isAuthor) {
+      const token = localStorage.getItem("token");
+      fetch(`http://localhost:3000/author/delete-blog/${blogId}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
         .then((res) => {
-          if(res.ok) {
-            setAuthorBlogs((prev) => prev.filter((blog) => blog.id != blogId))
-
+          if (res.ok) {
+            setAuthorBlogs((prev) => prev.filter((blog) => blog.id != blogId));
           }
           return res.json();
         })
         .then((res) => console.log(res))
-        .catch((err) => console.error(err))
-      }
+        .catch((err) => console.error(err));
     }
+  };
+
+  // (e) => handleDelete(e, blog.id)
+  const handleDeleteModal = (e, modalSetter) => {
+    e.preventDefault();
+    modalSetter((prev) => !prev);
+  };
 
   return (
     <li className={styles.blogListItemCont}>
+      {!isDeleteModalOpen ? null : (
+        <DeleteModal
+          handleDelete={handleDelete}
+          blogId={blog.id}
+          setIsDeleteModalOpen={setIsDeleteModalOpen}
+          handleDeleteModal={handleDeleteModal}
+          blogTitle={blog.title}
+        />
+      )}
       <h3>
         <Link to={`/blogs/${blog.id}`}>{blog.title}</Link>
       </h3>
@@ -99,10 +116,10 @@ const BlogPreviews = ({ styles, blog, setAuthorBlogs }) => {
         </div>
       )}
       <div>
-        <p>Posted: {formatRelative(blog.createdAt, new Date())}</p>
+        <p>Written: {formatRelative(blog.createdAt, new Date())}</p>
         {formatRelative(blog.createdAt, new Date()) !=
         formatRelative(blog.modifiedAt, new Date()) ? (
-          <p>Modified: {formatRelative(blog.modifiedAt, new Date())}</p>
+          <p>Edited: {formatRelative(blog.modifiedAt, new Date())}</p>
         ) : null}
       </div>
       <div className={styles.likesDislikesCommentsCont}>
@@ -138,8 +155,18 @@ const BlogPreviews = ({ styles, blog, setAuthorBlogs }) => {
           </div>
         </div>
         <div className={styles.editDeleteCont}>
-          <button type="button" className={styles.editDeleteParaIconCont}><img src={editIcon} alt="edit blog" /><p>Edit Blog</p></button>
-          <button onClick={(e) => handleDelete(e, blog.id)} type="button" className={styles.editDeleteParaIconCont}><img src={deleteIcon} alt="delete blog" /><p>Delete Blog</p></button>
+          <button type="button" className={styles.editDeleteParaIconCont}>
+            <img src={editIcon} alt="edit blog" />
+            <p>Edit Blog</p>
+          </button>
+          <button
+            onClick={(e) => handleDeleteModal(e, setIsDeleteModalOpen)}
+            type="button"
+            className={styles.editDeleteParaIconCont}
+          >
+            <img src={deleteIcon} alt="delete blog" />
+            <p>Delete Blog</p>
+          </button>
         </div>
       </div>
     </li>
