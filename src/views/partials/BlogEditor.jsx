@@ -1,4 +1,4 @@
-import { useRef, useContext } from 'react';
+import { useRef, useContext, useState } from 'react';
 import { Editor } from '@tinymce/tinymce-react';
 
 import UserContext from '../../UserContext';
@@ -8,6 +8,7 @@ import styles from '../../styles/BlogEditor.module.css';
 
 export default function BlogEditor() {
   const { isLoggedIn, isAuthor } = useContext(UserContext);
+  const [ postErr, setPostErr ] = useState(false);
   const titleRef = useRef(null);
   const editorRef = useRef(null);
   const publishCheckboxRef = useRef(null);
@@ -15,6 +16,7 @@ export default function BlogEditor() {
     e.preventDefault();
 
     if(isLoggedIn && isAuthor && editorRef.current) {
+      setPostErr(false)
       const token = localStorage.getItem('token');
       const formData = new FormData();
       formData.append('title', titleRef.current.value);
@@ -28,6 +30,14 @@ export default function BlogEditor() {
           Authorization: `Bearer ${token}`,
         }
       })
+      .then((res) => {
+        res.ok ? window.location = '/blogs' : setPostErr(true);
+      })
+      .catch((err) => {
+        if(err) {
+        setPostErr(true);
+        }
+      })
     }
 
   };
@@ -38,6 +48,12 @@ export default function BlogEditor() {
         <label htmlFor="title">Title</label>
         <input ref={titleRef} placeholder='My Title...' className={styles.titleInput} type="text" name='title' id='title' required/>
       </div>
+      {!postErr ? null : (
+        <div className={styles.postErrMsg}>
+          <h3>Something went wrong...</h3>
+          <p>Please try again</p>
+        </div>
+      )}
       <Editor
         apiKey={import.meta.env.VITE_API_KEY}
         onInit={ (_evt, editor) => editorRef.current = editor }

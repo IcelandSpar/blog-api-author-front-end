@@ -17,6 +17,11 @@
   text-align: center;
 }
 
+.postErrMsg {
+  margin: 1rem 0;
+  text-align: center;
+}
+
 .checkboxAndLabelCont {
   display: flex;
   justify-content: flex-end;
