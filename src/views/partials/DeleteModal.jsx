@@ -5,7 +5,12 @@ import closeNavIcon from '../../assets/close-nav-icon.svg';
 
 const DeleteModal = ({blogTitle, handleDeleteModal, setIsDeleteModalOpen, handleDelete, blogId}) => {
 return (
-  <div className={styles.modalBackground}>
+  <div onClick={(e) => {
+    e.preventDefault();
+    if ((e.target.className).split(' ')[1]) {
+      setIsDeleteModalOpen((prev) => !prev)
+    }
+  }} className={`${styles.modalBackground} modalBackground`}>
     <div className={styles.modalCont}>
     <button onClick={(e) => handleDeleteModal(e, setIsDeleteModalOpen)} type='button' className={styles.closeBtn}><img src={closeNavIcon} alt="close modal" /></button>
     <h4 className={styles.modalQuestion}>Are you sure you want to delete this blog?</h4>

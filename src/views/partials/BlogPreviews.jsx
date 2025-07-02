@@ -115,7 +115,7 @@ const BlogPreviews = ({ styles, blog, setAuthorBlogs }) => {
           <p>Updating in {updateCounter}</p>
         </div>
       )}
-      <div>
+      <div className={styles.writtenAndCreatedCont}>
         <p>Written: {formatRelative(blog.createdAt, new Date())}</p>
         {formatRelative(blog.createdAt, new Date()) !=
         formatRelative(blog.modifiedAt, new Date()) ? (
