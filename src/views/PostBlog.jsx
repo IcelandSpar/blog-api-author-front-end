@@ -14,7 +14,7 @@ const PostBlog = () => {
     <Navbar/>
     <Sidebar/>
       <main className={styles.postBlogMainCont}>
-      <BlogEditor/>
+      <BlogEditor mode={'post'}/>
 
       </main>
     </>

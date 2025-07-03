@@ -1,3 +1,9 @@
+.editBlogHeading {
+  text-align: center;
+  font-size: 2rem;
+  text-decoration: underline;
+}
+
 .labelAndInputCont {
   display: flex;
   flex-direction: column;

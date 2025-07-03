@@ -1,5 +1,5 @@
 import { useState, useRef, useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { formatRelative } from "date-fns";
 
 import UserContext from "../../UserContext";
@@ -14,6 +14,7 @@ import dislikeIcon from "../../assets/thumb_down.svg";
 import commentsIcon from "../../assets/person-msg-icon.svg";
 
 const BlogPreviews = ({ styles, blog, setAuthorBlogs }) => {
+  let navigate = useNavigate();
   const { isLoggedIn, isAuthor } = useContext(UserContext);
   const publishedCountTimeoutInstance = useRef({ timer: 3 });
   const publishedCountIntervalInstance = useRef({ timer: 0 });
@@ -77,6 +78,11 @@ const BlogPreviews = ({ styles, blog, setAuthorBlogs }) => {
         .catch((err) => console.error(err));
     }
   };
+
+  const handleEditBtn = (e, blogId) => {
+    e.preventDefault();
+    navigate(`/edit-blog/${blogId}`);
+  }
 
   // (e) => handleDelete(e, blog.id)
   const handleDeleteModal = (e, modalSetter) => {
@@ -155,7 +161,7 @@ const BlogPreviews = ({ styles, blog, setAuthorBlogs }) => {
           </div>
         </div>
         <div className={styles.editDeleteCont}>
-          <button type="button" className={styles.editDeleteParaIconCont}>
+          <button onClick={(e) => handleEditBtn(e, blog.id)} type="button" className={styles.editDeleteParaIconCont}>
             <img src={editIcon} alt="edit blog" />
             <p>Edit Blog</p>
           </button>

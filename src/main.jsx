@@ -10,11 +10,11 @@ import Logout from './views/Logout.jsx';
 import Profile from './views/Profile.jsx';
 import Register from './views/Register.jsx';
 import PostBlog from './views/PostBlog.jsx';
+import EditBlog from './views/EditBlog.jsx';
 import BecomeAuthor from './views/BecomeAuthor.jsx';
 
 
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-
 
 const router = createBrowserRouter([
   {
@@ -48,6 +48,10 @@ const router = createBrowserRouter([
   {
     path: '/blogs/:blogId',
     element: <Blog/>,
+  },
+  {
+    path: '/edit-blog/:blogId',
+    element: <EditBlog/>
   },
   {
     path: '/post-blog',
