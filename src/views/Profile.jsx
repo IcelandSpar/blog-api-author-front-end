@@ -15,6 +15,7 @@ const Profile = () => {
   const [ isFormOpen, setIsFormOpen ] = useState(false);
   const [ submitErr, setSubmitErr ] = useState(null);
   const [ inputEmptyErr, setInputEmptyErr ] = useState(null);
+  const [ errorMsgs, setErrorMsgs ] = useState([]);
 
   const handleEditBioBtn = (e) => {
     e.preventDefault();
@@ -28,6 +29,7 @@ const Profile = () => {
 
     formData.append('bio', bioInputRef.current.value);
 
+
     fetch(`http://localhost:3000/author/update/${isAuthor.id}`, {
       method: 'PUT',
       body: new URLSearchParams(formData),
@@ -35,10 +37,19 @@ const Profile = () => {
         Authorization: `Bearer ${token}`,
       }
     })
-    .then((res) => res.json())
-    .then((res) => console.log(res))
+    .then((res) => {
 
-    setIsFormOpen(prev => !prev)
+      if(res.ok) {
+        setIsFormOpen(prev => !prev)
+      }
+      return res.json();
+    })
+    .then((res) => {
+      if(res.errors) {
+        setErrorMsgs([...res.errors])
+      }
+    })
+
 
   }
 
@@ -97,6 +108,15 @@ const Profile = () => {
                   <fieldset className={styles.becomeAuthorFieldSet}>
                     <legend className={styles.formLegend}>Update your Bio</legend>
                     {submitErr ? <p>Something went wrong...</p> : null}
+                    {errorMsgs == null ? null : (
+                      <ul className={styles.errorMsgsUl}>
+                        {errorMsgs.map((err, indx) => {
+                          return (
+                            <li className={styles.errorMsgsLi} key={indx}>{err.msg}</li>
+                          )
+                        })}
+                      </ul>
+                    )}
                     {inputEmptyErr ? <p>You must submit a bio please.</p> : null}
                     <div className={styles.labelAndTextAreaCont}>
                       <label htmlFor="bio">Bio: </label>
