@@ -14,8 +14,10 @@ const Blogs = () => {
   const { isLoggedIn, isAuthor } = useContext(UserContext);
 
   const [authorBlogs, setAuthorBlogs] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    setIsLoading(true);
     if (isAuthor != null && isLoggedIn) {
       const token = localStorage.getItem("token");
       fetch(`http://localhost:3000/author/blogs/${isAuthor.id}`, {
@@ -26,7 +28,8 @@ const Blogs = () => {
         .then((res) => res.json())
         .then((res) => {
           setAuthorBlogs(res);
-        });
+        })
+        .finally(() => setIsLoading(false));
     }
   }, [isLoggedIn, isAuthor]);
 
@@ -39,12 +42,22 @@ const Blogs = () => {
         {authorBlogs.length > 0 ? (
           <>
             <ul className={styles.blogsUl}>
-              {authorBlogs.map((blog) => {
+              {authorBlogs.map((blog, indx) => {
                 return (
-                  <BlogPreviews key={blog.id} blog={blog} setAuthorBlogs={setAuthorBlogs} styles={styles} />
+                  <BlogPreviews
+                    key={blog.id}
+                    blog={blog}
+                    indx={indx}
+                    setAuthorBlogs={setAuthorBlogs}
+                    styles={styles}
+                  />
                 );
               })}
             </ul>
+          </>
+        ) : isLoading ? (
+          <>
+            <p>Loading...</p>
           </>
         ) : (
           <>

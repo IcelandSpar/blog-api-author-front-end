@@ -13,7 +13,7 @@ import deleteIcon from "../../assets/delete-icon.svg";
 import dislikeIcon from "../../assets/thumb_down.svg";
 import commentsIcon from "../../assets/person-msg-icon.svg";
 
-const BlogPreviews = ({ styles, blog, setAuthorBlogs }) => {
+const BlogPreviews = ({ styles, blog, setAuthorBlogs, indx }) => {
   let navigate = useNavigate();
   const { isLoggedIn, isAuthor } = useContext(UserContext);
   const publishedCountTimeoutInstance = useRef({ timer: 3 });
@@ -82,7 +82,7 @@ const BlogPreviews = ({ styles, blog, setAuthorBlogs }) => {
   const handleEditBtn = (e, blogId) => {
     e.preventDefault();
     navigate(`/edit-blog/${blogId}`);
-  }
+  };
 
   // (e) => handleDelete(e, blog.id)
   const handleDeleteModal = (e, modalSetter) => {
@@ -91,7 +91,7 @@ const BlogPreviews = ({ styles, blog, setAuthorBlogs }) => {
   };
 
   return (
-    <li className={styles.blogListItemCont}>
+    <li className={`${styles.blogListItemCont} blogListItem${indx}`}>
       {!isDeleteModalOpen ? null : (
         <DeleteModal
           handleDelete={handleDelete}
@@ -161,7 +161,11 @@ const BlogPreviews = ({ styles, blog, setAuthorBlogs }) => {
           </div>
         </div>
         <div className={styles.editDeleteCont}>
-          <button onClick={(e) => handleEditBtn(e, blog.id)} type="button" className={styles.editDeleteParaIconCont}>
+          <button
+            onClick={(e) => handleEditBtn(e, blog.id)}
+            type="button"
+            className={`${styles.editDeleteParaIconCont} editBlog`}
+          >
             <img src={editIcon} alt="edit blog" />
             <p>Edit Blog</p>
           </button>

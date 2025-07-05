@@ -11,6 +11,7 @@ export default function BlogEditor({ mode, blogContent = null }) {
   const { isLoggedIn, isAuthor } = useContext(UserContext);
   const { blogId } = useParams();
   const [postErr, setPostErr] = useState(false);
+  const [ blogPostErrMsgs, setblogPostErrMsgs ] = useState([]);
   const titleRef = useRef(null);
   const editorRef = useRef(null);
   const publishCheckboxRef = useRef(null);
@@ -44,7 +45,9 @@ export default function BlogEditor({ mode, blogContent = null }) {
         })
           .then((res) => {
             res.ok ? (window.location = "/blogs") : setPostErr(true);
+            return res.json();
           })
+          .then((res) => setblogPostErrMsgs([...res.errors]))
           .catch((err) => {
             if (err) {
               setPostErr(true);
@@ -66,7 +69,9 @@ export default function BlogEditor({ mode, blogContent = null }) {
         })
           .then((res) => {
             res.ok ? (window.location =  `/blogs/${blogId}`) : setPostErr(true);
+            return res.json();
           })
+          .then((res) => setblogPostErrMsgs([...res.errors]))
           .catch((err) => {
             if (err) {
               setPostErr(true);
@@ -91,6 +96,7 @@ export default function BlogEditor({ mode, blogContent = null }) {
           name="title"
           id="title"
           required
+          minLength={1}
         />
       </div>
       {!postErr ? null : (
@@ -98,6 +104,15 @@ export default function BlogEditor({ mode, blogContent = null }) {
           <h3>Something went wrong...</h3>
           <p>Please try again</p>
         </div>
+      )}
+      {blogPostErrMsgs.length == 0 ? null : (
+        <ul className={styles.blogErrMsgsUl}>
+          {blogPostErrMsgs.map((err, indx) => {
+            return (
+              <li key={indx} className={styles.blogErrMsgsLi}>{err.msg}</li>
+            )
+          })}
+        </ul>
       )}
       <Editor
         apiKey={import.meta.env.VITE_API_KEY}
