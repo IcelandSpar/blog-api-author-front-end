@@ -27,6 +27,8 @@ const CommentForm = ({ setComments }) => {
 
   const handleCommentSubmit = async (e) => {
     e.preventDefault();
+    setPostCommentErr([]);
+
     const jwtToken = localStorage.getItem("token");
 
     if (jwtToken) {
@@ -54,7 +56,9 @@ const CommentForm = ({ setComments }) => {
           } else if (!res.errors) {
             fetch(`http://localhost:3000/comments/${blogId}`)
             .then((result) => result.json())
-            .then((result) => setComments(result))
+            .then((result) => setComments(result));
+            commentTitleRef.current.value = '';
+            commentContentRef.current.value = '';
           }
         })
         .catch((err) => {

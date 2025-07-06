@@ -204,7 +204,7 @@ const Comment = ({comment, blogAuthor, commentIndx, setComments}) => {
           </div>
         </div>
       </div>
-      <p>{comment.comment}</p>
+      <p className={styles.commentContentPara}>{comment.comment}</p>
       <div className={styles.postedAndLikeCont}>
         <div className={styles.postedTimeStamps}>
           <p>Posted: {formatRelative(comment.createdAt, new Date())}</p>
