@@ -5,6 +5,7 @@ import App from './App.jsx';
 import Home from './views/Home.jsx';
 import Blog from './views/Blog.jsx';
 import Blogs from './views/Blogs.jsx';
+import Error from './views/Error.jsx';
 import Login from './views/Login.jsx';
 import Logout from './views/Logout.jsx';
 import Profile from './views/Profile.jsx';
@@ -14,7 +15,7 @@ import EditBlog from './views/EditBlog.jsx';
 import BecomeAuthor from './views/BecomeAuthor.jsx';
 
 
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter } from 'react-router-dom';
 
 const router = createBrowserRouter([
   {
@@ -56,6 +57,10 @@ const router = createBrowserRouter([
   {
     path: '/post-blog',
     element: <PostBlog/>
+  },
+  {
+    path: '*',
+    element: <Error/>
   }
 ]);
 
