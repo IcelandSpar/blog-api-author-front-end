@@ -6,6 +6,14 @@
   padding: 1rem;
 }
 
+.mustBeLoggedInMsg {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  font-size: 2rem;
+}
+
 .blogsHeading {
   text-align: center;
   margin: 0 0 1rem 0;

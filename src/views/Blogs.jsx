@@ -38,35 +38,43 @@ const Blogs = () => {
       <Sidebar />
       <Navbar />
       <main className={styles.authorBlogsMainCont}>
-        <h1 className={styles.blogsHeading}>Blogs</h1>
-        {authorBlogs.length > 0 ? (
-          <>
-            <ul className={styles.blogsUl}>
-              {authorBlogs.map((blog, indx) => {
-                return (
-                  <BlogPreviews
-                    key={blog.id}
-                    blog={blog}
-                    indx={indx}
-                    setAuthorBlogs={setAuthorBlogs}
-                    styles={styles}
-                  />
-                );
-              })}
-            </ul>
-          </>
-        ) : isLoading ? (
-          <>
-            <p>Loading...</p>
-          </>
+        {!isLoggedIn ? (
+          <div className={styles.mustBeLoggedInMsg}>
+            <p>You must be <Link to={'/login'}>logged in</Link> to view blogs</p>
+          </div>
         ) : (
           <>
-            <p className={styles.noBlogsMsg}>
-              It looks like you don't have any blogs right now...
-            </p>
-            <p className={styles.noBlogsMsg}>
-              <Link to={"/post-blog"}>Write a blog</Link>
-            </p>
+            <h1 className={styles.blogsHeading}>Blogs</h1>
+            {authorBlogs.length > 0 ? (
+              <>
+                <ul className={styles.blogsUl}>
+                  {authorBlogs.map((blog, indx) => {
+                    return (
+                      <BlogPreviews
+                        key={blog.id}
+                        blog={blog}
+                        indx={indx}
+                        setAuthorBlogs={setAuthorBlogs}
+                        styles={styles}
+                      />
+                    );
+                  })}
+                </ul>
+              </>
+            ) : isLoading ? (
+              <>
+                <p>Loading...</p>
+              </>
+            ) : (
+              <>
+                <p className={styles.noBlogsMsg}>
+                  It looks like you don't have any blogs right now...
+                </p>
+                <p className={styles.noBlogsMsg}>
+                  <Link to={"/post-blog"}>Write a blog</Link>
+                </p>
+              </>
+            )}
           </>
         )}
       </main>

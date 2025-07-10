@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+import { Link } from 'react-router-dom';
 import Navbar from "./partials/Navbar.jsx";
 import Sidebar from "./partials/Sidebar.jsx";
 import styles from "../styles/Login.module.css";
@@ -100,6 +101,9 @@ const Login = () => {
                 id="password"
                 name="password"
               />
+            </div>
+            <div className={styles.registerCont}>
+              <p className={styles.linkToRegister}><Link to={'/register'}>Don't have an account?</Link></p>
             </div>
             <button
               type="submit"
